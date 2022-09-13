@@ -7,7 +7,7 @@ function App() {
 
   return (
     <div className="App">
-      <form>
+      <form className="form-container">
         <label for="country">Select A Country</label>
         <input
           type="text"
@@ -21,7 +21,7 @@ function App() {
 
       <ul>
         {Data.filter((Country) =>
-          Country.toLowerCase().includes(filter.toLowerCase())
+          Country.name.toLowerCase().includes(filter.toLowerCase())
         ).map((Country) => {
           return <li key={Country.code}>{Country.name}</li>;
         })}

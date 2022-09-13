@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Data from "./Data.json";
+import "./App.css";
 
 function App() {
+  const [filter, setFilter] = useState("");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <form>
+        <label for="country">Select A Country</label>
+        <input
+          type="text"
+          id="country"
+          name="country"
+          value={filter}
+          onChange={(event) => setFilter(event.target.value)}
+        />
+        <input type="submit" value="Submit" />
+      </form>
+
+      <ul>
+        {Data.filter((Country) =>
+          Country.toLowerCase().includes(filter.toLowerCase())
+        ).map((Country) => {
+          return <li key={Country.code}>{Country.name}</li>;
+        })}
+      </ul>
     </div>
   );
 }
